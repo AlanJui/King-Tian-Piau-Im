@@ -10,7 +10,7 @@
 罷矣！罷矣！既然沒有，亦不能久待，不如就捲臂親為？！
 於是乎......本專案因而啟動。
 
-##【預計目標】
+## 【預計目標】
 
 - 道德經（帛書版）
 - 金剛經
@@ -59,6 +59,11 @@ Markdown 文檔置放 YouTube 影片【語法】範例：
 
 3. 合成 Markdown 語法
 
+**【使用 YouTube 網站圖片】**
+
 [![金剛經（台語唸誦）](https://img.youtube.com/vi/msvYAVsgU2A/0.jpg)](https://www.youtube.com/watch?v=msvYAVsgU2A)
 
-[![金剛經（台語唸誦）](images/Kim-Kong-Ging.png)](https://www.youtube.com/watch?v=msvYAVsgU2A)
+
+**【使用 GitHub 容器內存圖片】**
+
+[![金剛經（台語唸誦）](images/Kim-Kong-Ging.jpg)](https://www.youtube.com/watch?v=msvYAVsgU2A)
