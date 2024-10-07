@@ -13,7 +13,7 @@
 body {
   /* width: 100%; */
   margin: 10px auto;
-  width: 70%;
+  width: 100%;
   color: #333;
   line-height: 2.0;
   font-size: 28pt;
@@ -54,6 +54,12 @@ h1 {
 
 #articles {
   font-weight: bold;
+}
+
+#content {
+  margin: 0 auto;
+  width: 70%;
+  /* 您可以根據需求調整寬度 */
 }
 
 .title {
@@ -227,7 +233,7 @@ rtc {
 
 table {
   border-collapse: collapse;
-  width: 90%;
+  width: 70%;
   /* 您可以根據需求調整寬度 */
   margin: 0 auto;
   /* 表格居中 */

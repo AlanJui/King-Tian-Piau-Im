@@ -7,135 +7,217 @@
     <meta property="og:image" content="https://alanjui.github.io/Piau-Im/assets/picts/king_tian.png" />
     <title>金剛般若波羅蜜經 - 目錄</title>
     <link rel="stylesheet" href="./assets/styles/styles.css">
+    <script>
+        let currentPage = 1;  // 記錄當前頁面編號
+        const totalPages = 32;  // 設定總頁數
+
+        // 動態載入超連結指向的網頁內容
+        function loadPage(event, url, pageNum = null) {
+            if (event) event.preventDefault(); // 防止頁面重新載入
+
+            if (pageNum !== null) {
+                currentPage = pageNum;
+            }
+
+            // 隱藏目錄表格
+            document.getElementById('toc').style.display = 'none';
+
+            // 更新【上一頁】和【下一頁】的狀態
+            updateNavLinks();
+
+            // 顯示導航連結
+            document.getElementById('navLinks').style.display = 'block';
+
+            // 使用 fetch API 來載入指定的網頁內容
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    // 將抓取的 HTML 內容插入到 #content 的 div 中
+                    document.getElementById('content').innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error loading page:', error);
+                    document.getElementById('content').innerHTML = "<p>無法載入網頁內容</p>";
+                });
+        }
+
+        // 更新【上一頁】和【下一頁】的狀態
+        function updateNavLinks() {
+            document.getElementById('prevLink').href = `金剛般若波羅蜜經${String(currentPage - 1).padStart(3, '0')}.html`;
+            document.getElementById('nextLink').href = `金剛般若波羅蜜經${String(currentPage + 1).padStart(3, '0')}.html`;
+            document.getElementById('prevLink').onclick = (event) => loadPage(event, `金剛般若波羅蜜經${String(currentPage - 1).padStart(3, '0')}.html`, currentPage - 1);
+            document.getElementById('nextLink').onclick = (event) => loadPage(event, `金剛般若波羅蜜經${String(currentPage + 1).padStart(3, '0')}.html`, currentPage + 1);
+
+            // 禁用在第一頁或最後一頁時的「上一頁」或「下一頁」
+            document.getElementById('prevLink').style.visibility = (currentPage <= 1) ? 'hidden' : 'visible';
+            document.getElementById('nextLink').style.visibility = (currentPage >= totalPages) ? 'hidden' : 'visible';
+        }
+
+        // 載入首頁
+        function loadHome(event) {
+            event.preventDefault();
+
+            // 隱藏導航連結
+            document.getElementById('navLinks').style.display = 'none';
+
+            // 顯示目錄表格
+            document.getElementById('toc').style.display = 'block';
+
+            // 清空內容區域，避免重複顯示內容
+            document.getElementById('content').innerHTML = '';
+        }
+
+        // 初次進入頁面時調用，初始化狀態
+        window.onload = () => {
+            document.getElementById('navLinks').style.display = 'none';  // 初次進入時隱藏導航連結
+        };
+    </script>
 </head>
 
 <body>
     <!-- 頁首 -->
     <header id="header">
-        <img src="./assets/picts/king_tian.png" width="300" height="200" alt="四晝五經">
+        <a href='圖片' style='display: block; padding: 1em 0; text-align: center'>
+            <img alt='金剛般若波羅蜜經001。法會因由分第一' border='0' width='400' data-original-height='630' data-original-width='1200'
+                src='https://shoplineimg.com/5db585d59db3cb0012a18bce/5f2a9d3f30cc6200455c1c25/1296x.webp?source_format=jpg' />
+        </a>
         <h1>金剛般若波羅蜜經</h1>
     </header><!-- /#header -->
-    <table>
-        <tr>
-            <td>
-                <li><a href="金剛般若波羅蜜經001.html">法會因由分第一</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經002.html">善現啟請分第二</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經003.html">大乘正宗分第三</a></li>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <li><a href="金剛般若波羅蜜經004.html">妙行無住分第四</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經005.html">如理實見分第五</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經006.html">正信希有分第六</a></li>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <li><a href="金剛般若波羅蜜經007.html">無得無說分第七</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經008.html">依法出生分第八</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經009.html">一相無相分第九</a></li>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <li><a href="金剛般若波羅蜜經010.html">莊嚴淨土分第十</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經011.html">無為福勝分第十一</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經012.html">尊重正教分第十二</a></li>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <li><a href="金剛般若波羅蜜經013.html">如法受持分第十三</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經014.html">離相寂滅分第十四</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經015.html">持經功德分第十五</a></li>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <li><a href="金剛般若波羅蜜經016.html">能淨業障分第十六</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經017.html">究竟無我分第十七</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經018.html">一體同觀分第十八</a></li>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <li><a href="金剛般若波羅蜜經019.html">法界通化分第十九</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經020.html">離色離相分第二十</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經021.html">非說所說分第二十一</a></li>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <li><a href="金剛般若波羅蜜經022.html">無法可得分第二十二</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經023.html">淨心善行分第二十三</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經024.html">福智無比分第二十四</a></li>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <li><a href="金剛般若波羅蜜經025.html">化無所化分第二十五</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經026.html">法身非相分第二十六</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經027.html">無斷無滅分第二十七</a></li>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <li><a href="金剛般若波羅蜜經028.html">不受不貪分第二十八</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經029.html">威儀寂靜分第二十九</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經030.html">一合理相分第三十</a></li>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <li><a href="金剛般若波羅蜜經031.html">知見不生分第三十一</a></li>
-            </td>
-            <td>
-                <li><a href="金剛般若波羅蜜經032.html">應化非真分第三十二</a></li>
-            </td>
-        </tr>
+    <div class="main">
+        <!-- 分頁導航連結，初始狀態為隱藏 -->
+        <nav id="navLinks" style="display: none;">
+            <a href="#" id="prevLink" onclick="loadPage(event, '金剛般若波羅蜜經001.html', currentPage - 1)">【上一頁】</a>
+            <a href="#" id="nextLink" onclick="loadPage(event, '金剛般若波羅蜜經002.html', currentPage + 1)">【下一頁】</a>
+            <a href="#" onclick="loadHome(event)">【回首頁】</a>
+        </nav>
 
-    </table>
+        <!-- 動態插入網頁內容的區域 -->
+        <div id="content">
+            <!-- 預設為空，當使用者點擊超連結後會插入內容 -->
+        </div>
+
+        <!-- 目錄表格 -->
+        <table id="toc">
+            <tr>
+                <td>
+                    <li><a href="金剛般若波羅蜜經001.html" onclick="loadPage(event, '金剛般若波羅蜜經001.html', 1)">法會因由分第一</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經002.html" onclick="loadPage(event, '金剛般若波羅蜜經002.html', 2)">善現啟請分第二</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經003.html" onclick="loadPage(event, '金剛般若波羅蜜經003.html', 3)">大乘正宗分第三</a></li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <li><a href="金剛般若波羅蜜經004.html" onclick="loadPage(event, '金剛般若波羅蜜經004.html', 4)">妙行無住分第四</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經005.html" onclick="loadPage(event, '金剛般若波羅蜜經005.html', 5)">如理實見分第五</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經006.html" onclick="loadPage(event, '金剛般若波羅蜜經006.html', 6)">正信希有分第六</a></li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <li><a href="金剛般若波羅蜜經007.html" onclick="loadPage(event, '金剛般若波羅蜜經007.html', 7)">無得無說分第七</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經008.html" onclick="loadPage(event, '金剛般若波羅蜜經008.html', 8)">依法出生分第八</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經009.html" onclick="loadPage(event, '金剛般若波羅蜜經009.html', 9)">一相無相分第九</a></li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <li><a href="金剛般若波羅蜜經010.html" onclick="loadPage(event, '金剛般若波羅蜜經010.html', 10)">莊嚴淨土分第十</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經011.html" onclick="loadPage(event, '金剛般若波羅蜜經011.html', 11)">無為福勝分第十一</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經012.html" onclick="loadPage(event, '金剛般若波羅蜜經012.html', 12)">尊重正教分第十二</a></li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <li><a href="金剛般若波羅蜜經013.html" onclick="loadPage(event, '金剛般若波羅蜜經013.html', 13)">如法受持分第十三</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經014.html" onclick="loadPage(event, '金剛般若波羅蜜經014.html', 14)">離相寂滅分第十四</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經015.html" onclick="loadPage(event, '金剛般若波羅蜜經015.html', 15)">持經功德分第十五</a></li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <li><a href="金剛般若波羅蜜經016.html" onclick="loadPage(event, '金剛般若波羅蜜經016.html', 16)">能淨業障分第十六</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經017.html" onclick="loadPage(event, '金剛般若波羅蜜經017.html', 17)">究竟無我分第十七</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經018.html" onclick="loadPage(event, '金剛般若波羅蜜經018.html', 18)">一體同觀分第十八</a></li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <li><a href="金剛般若波羅蜜經019.html" onclick="loadPage(event, '金剛般若波羅蜜經019.html', 19)">法界通化分第十九</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經020.html" onclick="loadPage(event, '金剛般若波羅蜜經020.html', 20)">離色離相分第二十</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經021.html" onclick="loadPage(event, '金剛般若波羅蜜經021.html', 21)">非說所說分第二十一</a></li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <li><a href="金剛般若波羅蜜經022.html" onclick="loadPage(event, '金剛般若波羅蜜經022.html', 22)">無法可得分第二十二</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經023.html" onclick="loadPage(event, '金剛般若波羅蜜經023.html', 23)">淨心善行分第二十三</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經024.html" onclick="loadPage(event, '金剛般若波羅蜜經024.html', 24)">福智無比分第二十四</a></li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <li><a href="金剛般若波羅蜜經025.html" onclick="loadPage(event, '金剛般若波羅蜜經025.html', 25)">化無所化分第二十五</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經026.html" onclick="loadPage(event, '金剛般若波羅蜜經026.html', 26)">法身非相分第二十六</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經027.html" onclick="loadPage(event, '金剛般若波羅蜜經027.html', 27)">無斷無滅分第二十七</a></li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <li><a href="金剛般若波羅蜜經028.html" onclick="loadPage(event, '金剛般若波羅蜜經028.html', 28)">不受不貪分第二十八</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經029.html" onclick="loadPage(event, '金剛般若波羅蜜經029.html', 29)">威儀寂靜分第二十九</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經030.html" onclick="loadPage(event, '金剛般若波羅蜜經030.html', 30)">一合理相分第三十</a></li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <li><a href="金剛般若波羅蜜經031.html" onclick="loadPage(event, '金剛般若波羅蜜經031.html', 31)">知見不生分第三十一</a></li>
+                </td>
+                <td>
+                    <li><a href="金剛般若波羅蜜經032.html" onclick="loadPage(event, '金剛般若波羅蜜經032.html', 32)">應化非真分第三十二</a></li>
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 
 </html>
