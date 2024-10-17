@@ -27,6 +27,7 @@
 
             // 顯示導航連結
             document.getElementById('navLinks').style.display = 'block';
+            document.getElementById('navLinks1').style.display = 'block';
 
             // 使用 fetch API 來載入指定的網頁內容
             fetch(url)
@@ -51,6 +52,16 @@
             // 禁用在第一頁或最後一頁時的「上一頁」或「下一頁」
             document.getElementById('prevLink').style.visibility = (currentPage <= 1) ? 'hidden' : 'visible';
             document.getElementById('nextLink').style.visibility = (currentPage >= totalPages) ? 'hidden' : 'visible';
+
+            // 置於頁面底端之導航連結
+            document.getElementById('prevLink1').href = `金剛般若波羅蜜經${String(currentPage - 1).padStart(3, '0')}.html`;
+            document.getElementById('nextLink1').href = `金剛般若波羅蜜經${String(currentPage + 1).padStart(3, '0')}.html`;
+            document.getElementById('prevLink1').onclick = (event) => loadPage(event, `金剛般若波羅蜜經${String(currentPage - 1).padStart(3, '0')}.html`, currentPage - 1);
+            document.getElementById('nextLink1').onclick = (event) => loadPage(event, `金剛般若波羅蜜經${String(currentPage + 1).padStart(3, '0')}.html`, currentPage + 1);
+
+            // 禁用在第一頁或最後一頁時的「上一頁」或「下一頁」
+            document.getElementById('prevLink1').style.visibility = (currentPage <= 1) ? 'hidden' : 'visible';
+            document.getElementById('nextLink1').style.visibility = (currentPage >= totalPages) ? 'hidden' : 'visible';
         }
 
         // 載入首頁
@@ -59,6 +70,7 @@
 
             // 隱藏導航連結
             document.getElementById('navLinks').style.display = 'none';
+            document.getElementById('navLinks1').style.display = 'none';
 
             // 顯示目錄表格
             document.getElementById('toc').style.display = 'block';
@@ -70,6 +82,7 @@
         // 初次進入頁面時調用，初始化狀態
         window.onload = () => {
             document.getElementById('navLinks').style.display = 'none';  // 初次進入時隱藏導航連結
+            document.getElementById('navLinks1').style.display = 'none';  // 初次進入時隱藏導航連結
         };
     </script>
 </head>
@@ -85,7 +98,7 @@
     </header><!-- /#header -->
     <div class="main">
         <!-- 分頁導航連結，初始狀態為隱藏 -->
-        <nav id="navLinks" style="display: none;">
+        <nav id="navLinks" style="display: none; font-size: 0.6em; text-align: center;">
             <a href="#" id="prevLink" onclick="loadPage(event, '金剛般若波羅蜜經001.html', currentPage - 1)">【上一頁】</a>
             <a href="#" id="nextLink" onclick="loadPage(event, '金剛般若波羅蜜經002.html', currentPage + 1)">【下一頁】</a>
             <a href="#" onclick="loadHome(event)">【回首頁】</a>
@@ -217,6 +230,13 @@
                 </td>
             </tr>
         </table>
+
+        <!-- 分頁導航連結，初始狀態為隱藏 -->
+        <nav id="navLinks1" style="display: none; font-size: 0.6em; text-align: center;">
+            <a href="#" id="prevLink1" onclick="loadPage(event, '金剛般若波羅蜜經001.html', currentPage - 1)">【上一頁】</a>
+            <a href="#" id="nextLink1" onclick="loadPage(event, '金剛般若波羅蜜經002.html', currentPage + 1)">【下一頁】</a>
+            <a href="#" onclick="loadHome(event)">【回首頁】</a>
+        </nav>
     </div>
 </body>
 
